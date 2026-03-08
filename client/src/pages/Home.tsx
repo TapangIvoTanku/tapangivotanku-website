@@ -6,7 +6,7 @@
 import { useEffect, useRef, useState } from "react";
 
 /* ─── Data ───────────────────────────────────────────────────── */
-const PROFILE_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663351461221/LRS8ryh6ETstbnQmQHyTcw/tapang-profile_57489805.png";
+const PROFILE_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663351461221/kN578GQbnHP6g8pG6QHmC8/tapang-profile-cropped_30f7fa9b.png";
 const HERO_BG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663351461221/kN578GQbnHP6g8pG6QHmC8/hero-bg-c3z9AJZ8SNJ2bAHAPTTrtt.webp";
 
 const NAV_LINKS = [
@@ -22,28 +22,56 @@ const INTERESTS = [
   "AI & Strategic Deception",
   "Crisis Bargaining Theory",
   "Deterrence & Compellence",
+  "Formal Game Theory",
+  "Continual Learning in LLMs",
   "Computational Social Science",
-  "Political Economy of AI",
+  "Nuclear Proliferation",
 ];
 
 const EDUCATION = [
-  { degree: "PhD in Political Science & Data Science", institution: "University at Buffalo, SUNY", year: "In Progress", focus: "International Security, AI, Crisis Bargaining" },
-  { degree: "MSc in Statistics", institution: "National University", year: "2014", focus: "" },
+  {
+    degree: "PhD in Political Science & Data Science",
+    institution: "University at Buffalo, SUNY",
+    year: "2025",
+    focus: "International Security · AI · Crisis Bargaining",
+  },
+  {
+    degree: "MSc in Statistics",
+    institution: "National University",
+    year: "2014",
+    focus: "",
+  },
 ];
 
 const PROJECTS = [
   {
     name: "The Bluffing Machine",
-    description: "Peer-reviewed research on generative AI, strategic deception, and the limits of deterrence theory. Under review at the Journal of Global Security Studies.",
-    tags: ["AI", "Deterrence Theory", "Game Theory", "NLP"],
-    url: "https://ssrn.com/abstract=5138435",
+    description: "The first formal experimental test of whether LLMs can engage in strategic deception in crisis bargaining. Tests GPT-4.1-mini, GPT-4.1-nano, and Gemini-2.5-Flash across 900 simulated interactions using a Perfect Bayesian Equilibrium signaling game framework. Introduces the Signal-Reason-Outcome (S-R-O) qualitative coding framework.",
+    tags: ["LLMs", "Game Theory", "PBE", "Deterrence Theory", "Python"],
+    url: "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6361838",
     highlight: true,
     badge: "Under Review — JGSS",
   },
   {
+    name: "The Decisive Game",
+    description: "A twelve-player Bayesian game-theoretic model of the 2026 U.S.-Iran War. Introduces the novel mechanism of induced player type change — formalizing how leadership decapitation shifts coalition posterior beliefs. Supported by a 5,000-trial agent-based simulation deriving the Perfect Bayesian Equilibrium.",
+    tags: ["Bayesian Game", "ABM", "Nuclear Security", "Formal IR", "Python"],
+    url: "https://github.com/TapangIvoTanku/the-decisive-game",
+    highlight: false,
+    badge: "Manuscript Ready",
+  },
+  {
+    name: "AdaLoRA-MoE",
+    description: "A novel continual learning framework for LLMs combining adaptive LoRA with Mixture-of-Experts routing. Addresses RLHF alignment preservation during sequential fine-tuning via an Alignment Anchor Loss. Targets NeurIPS 2026.",
+    tags: ["LoRA", "MoE", "Continual Learning", "RLHF", "PyTorch"],
+    url: "https://github.com/TapangIvoTanku/AdaLoRA-MoE",
+    highlight: false,
+    badge: "NeurIPS 2026 Target",
+  },
+  {
     name: "Epstein Files Research Assistant",
-    description: "Semantic search across 2.4 million pages of declassified DOJ documents. Built with 3.3M+ vectors indexed using advanced NLP and document intelligence pipelines.",
-    tags: ["NLP", "Semantic Search", "Vector DB", "Python"],
+    description: "Semantic search across 2.4 million pages of declassified DOJ documents. 3.3M+ vectors indexed using advanced NLP and document intelligence pipelines. Demonstrates large-scale RAG architecture for investigative research.",
+    tags: ["RAG", "Pinecone", "Semantic Search", "FastAPI", "Vector DB"],
     url: "https://www.chomskytanku.com/epstein-files-research-tool",
     highlight: false,
     badge: "",
@@ -52,25 +80,26 @@ const PROJECTS = [
 
 const EXPERIENCE = [
   {
-    title: "PhD Researcher",
-    company: "University at Buffalo, SUNY",
-    period: "2022 – Present",
-    location: "Buffalo, NY",
+    title: "Senior Data Scientist",
+    company: "Fortune 5 Company",
+    period: "2020 – Present",
+    location: "USA",
     bullets: [
-      "Conducting original research on AI-driven strategic deception and its implications for international security and deterrence theory.",
-      "Developing computational models of crisis bargaining using game-theoretic and machine learning approaches.",
-      "Authoring peer-reviewed manuscripts on the intersection of generative AI and geopolitical stability.",
+      "Applying advanced machine learning and statistical modeling to understand customer behavior at massive scale — billions of data points across global markets.",
+      "Architecting and deploying production ML systems that directly influence product strategy and business outcomes at Fortune 5 scale.",
+      "Leading cross-functional teams of engineers, scientists, and product managers to ship high-impact AI solutions end-to-end.",
+      "Driving GenAI integration initiatives, including LLM fine-tuning, RAG pipelines, and agentic workflow deployment.",
     ],
   },
   {
     title: "Senior Data Scientist",
     company: "Fortune 100 Company (Marketing Industry)",
-    period: "2017 – 2022",
+    period: "2017 – 2020",
     location: "USA",
     bullets: [
-      "Developed statistical models to optimize marketing spend and measure campaign effectiveness.",
-      "Built customer segmentation frameworks that improved targeting precision by 40%.",
-      "Led a team of analysts and junior data scientists on high-impact projects.",
+      "Developed statistical models to optimize marketing spend and measure campaign effectiveness across multi-channel digital platforms.",
+      "Built customer segmentation frameworks using deep learning that improved targeting precision by 40%.",
+      "Led a team of analysts and junior data scientists on high-impact, revenue-generating projects.",
     ],
   },
   {
@@ -79,18 +108,38 @@ const EXPERIENCE = [
     period: "2014 – 2017",
     location: "USA",
     bullets: [
-      "Designed risk models and behavioral analytics systems for consumer banking products.",
-      "Implemented machine learning pipelines for fraud detection and credit scoring.",
-      "Translated complex data insights into actionable recommendations for executive stakeholders.",
+      "Designed risk models and behavioral analytics systems for consumer banking products serving millions of customers.",
+      "Implemented machine learning pipelines for fraud detection and credit scoring, reducing false positive rates significantly.",
+      "Translated complex data insights into actionable executive recommendations that shaped product roadmaps.",
     ],
   },
 ];
 
 const SKILLS = [
-  { category: "Languages & Tools", items: ["Python", "R", "SQL", "Spark", "Scala", "Git", "Docker", "AWS"] },
-  { category: "Machine Learning", items: ["Deep Learning", "NLP", "Computer Vision", "Causal Inference", "Bayesian Statistics", "Time Series"] },
-  { category: "Frameworks", items: ["TensorFlow", "PyTorch", "scikit-learn", "Hugging Face", "LangChain", "Pandas", "NumPy"] },
-  { category: "Data & Cloud", items: ["AWS SageMaker", "Redshift", "Athena", "Databricks", "Snowflake", "Tableau"] },
+  {
+    category: "Generative AI",
+    items: ["GPT-4 / o3", "Gemini 2.5", "Claude 3.7", "LLM Fine-tuning", "LoRA / QLoRA", "RLHF / DPO", "Prompt Engineering", "Agentic AI"],
+  },
+  {
+    category: "ML & Deep Learning",
+    items: ["PyTorch", "TensorFlow", "Hugging Face", "LangChain", "RAG Pipelines", "Computer Vision", "NLP", "Causal Inference"],
+  },
+  {
+    category: "Languages & Engineering",
+    items: ["Python", "R", "SQL", "Spark", "Scala", "Docker", "AWS", "Git"],
+  },
+  {
+    category: "Research Methods",
+    items: ["Bayesian Statistics", "Game Theory", "Agent-Based Modeling", "Formal IR Theory", "Signaling Games", "PBE Analysis", "Experimental Design", "Replication"],
+  },
+  {
+    category: "Data & Cloud",
+    items: ["AWS SageMaker", "Pinecone", "Databricks", "Snowflake", "Redshift", "Athena", "Tableau", "dbt"],
+  },
+  {
+    category: "Frameworks & Tools",
+    items: ["FastAPI", "React", "scikit-learn", "Pandas", "NumPy", "Weights & Biases", "MLflow", "Vitest"],
+  },
 ];
 
 /* ─── Fade-up hook ───────────────────────────────────────────── */
@@ -153,7 +202,7 @@ function Nav() {
       }}
     >
       <div className="container flex items-center justify-between py-4">
-        <a href="#" className="font-display text-white font-semibold text-lg tracking-tight" style={{ fontFamily: "'Fraunces', serif" }}>
+        <a href="#" className="text-white font-semibold text-lg tracking-tight" style={{ fontFamily: "'Fraunces', serif" }}>
           Tapang Ivo Tanku
         </a>
 
@@ -165,7 +214,7 @@ function Nav() {
               href={l.href}
               className="font-mono-label text-xs tracking-widest uppercase transition-colors duration-200"
               style={{
-                color: active === l.href.slice(1) ? "var(--cobalt)" : "rgba(240,244,255,0.6)",
+                color: active === l.href.slice(1) ? "var(--cobalt)" : "rgba(240,244,255,0.55)",
               }}
             >
               {l.label}
@@ -185,7 +234,6 @@ function Nav() {
         </button>
       </div>
 
-      {/* Mobile menu */}
       {menuOpen && (
         <div className="md:hidden px-6 pb-6 flex flex-col gap-4" style={{ background: "rgba(11,17,32,0.97)" }}>
           {NAV_LINKS.map((l) => (
@@ -214,7 +262,6 @@ function Hero() {
         background: `linear-gradient(135deg, rgba(11,17,32,0.97) 0%, rgba(15,30,60,0.92) 100%), url(${HERO_BG}) center/cover no-repeat`,
       }}
     >
-      {/* Subtle gradient overlay at bottom */}
       <div className="absolute bottom-0 left-0 right-0 h-32 pointer-events-none" style={{ background: "linear-gradient(to bottom, transparent, #0B1120)" }} />
 
       <div className="container relative z-10 pt-24 pb-16">
@@ -222,7 +269,6 @@ function Hero() {
 
           {/* Text block */}
           <div className="flex-1 text-center lg:text-left">
-            {/* Status badge */}
             <div
               className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full mb-6 font-mono-label text-xs"
               style={{ background: "rgba(255,255,255,0.08)", color: "rgba(240,244,255,0.75)", border: "1px solid rgba(255,255,255,0.1)" }}
@@ -240,31 +286,37 @@ function Hero() {
             </h1>
 
             <p
-              className="font-mono-label text-base mb-6"
+              className="font-mono-label text-base mb-2"
               style={{ color: "rgba(74,158,255,0.9)", letterSpacing: "0.04em" }}
               itemProp="jobTitle"
             >
-              PhD Researcher · University at Buffalo, SUNY
+              PhD · Senior Data Scientist at a Fortune 5 Company
+            </p>
+            <p
+              className="font-mono-label text-sm mb-6"
+              style={{ color: "rgba(126,203,161,0.75)", letterSpacing: "0.03em" }}
+            >
+              Researcher · University at Buffalo, SUNY
             </p>
 
             <p
               className="text-base leading-relaxed mb-4 max-w-xl"
-              style={{ color: "rgba(240,244,255,0.8)" }}
+              style={{ color: "rgba(240,244,255,0.82)" }}
             >
-              I study how artificial intelligence reshapes the strategic landscape of international security. My research sits at the intersection of crisis bargaining theory, generative AI, and computational social science.
+              I build AI systems that operate at Fortune 5 scale by day — and study how those same systems are reshaping the strategic logic of international conflict by night. My research asks a deceptively simple question: <em className="text-white">can a machine bluff?</em>
             </p>
 
             <p
               className="text-base leading-relaxed mb-8 max-w-xl"
-              style={{ color: "rgba(240,244,255,0.65)" }}
+              style={{ color: "rgba(240,244,255,0.62)" }}
             >
-              I'm passionate about democratizing knowledge in a way that is accessible to everyone, regardless of background.
+              I'm passionate about democratizing knowledge — making rigorous research accessible to everyone, regardless of background.
             </p>
 
             <div className="flex flex-wrap gap-3 justify-center lg:justify-start">
               <a
                 href="#research"
-                className="px-6 py-3 rounded-md font-semibold text-sm text-white transition-all hover:opacity-90 hover:translate-y-[-1px]"
+                className="px-6 py-3 rounded-md font-semibold text-sm text-white transition-all hover:opacity-90 hover:-translate-y-px"
                 style={{ background: "var(--cobalt)" }}
               >
                 View My Research
@@ -290,10 +342,10 @@ function Hero() {
               <img
                 src={PROFILE_IMG}
                 alt="Tapang Ivo Tanku"
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover object-top"
                 itemProp="image"
               />
-              <div className="absolute inset-0" style={{ background: "linear-gradient(135deg, rgba(74,158,255,0.08) 0%, transparent 60%)" }} />
+              <div className="absolute inset-0" style={{ background: "linear-gradient(135deg, rgba(74,158,255,0.06) 0%, transparent 60%)" }} />
             </div>
           </div>
         </div>
@@ -319,14 +371,14 @@ function About() {
         <div className="grid md:grid-cols-2 gap-12">
           <FadeIn delay={100}>
             <div>
-              <p className="text-base leading-relaxed mb-5" style={{ color: "rgba(240,244,255,0.75)" }}>
-                I am a PhD Researcher at the University at Buffalo, SUNY, where my work sits at the convergence of political science, data science, and artificial intelligence. My primary research examines how generative AI systems alter the strategic calculus of state and non-state actors in international crises.
+              <p className="text-base leading-relaxed mb-5" style={{ color: "rgba(240,244,255,0.78)" }}>
+                I am a PhD-trained researcher and practitioner at the intersection of artificial intelligence, formal political theory, and large-scale data science. My academic work at the University at Buffalo, SUNY examines how generative AI systems alter the strategic calculus of states in international crises — with a particular focus on whether LLMs can engage in deliberate, goal-directed deception.
               </p>
-              <p className="text-base leading-relaxed mb-5" style={{ color: "rgba(240,244,255,0.75)" }}>
-                Prior to my doctoral studies, I spent nearly a decade as a data scientist in industry — building machine learning systems at Fortune 100 companies in marketing and banking. That experience grounds my research in practical computational methods.
+              <p className="text-base leading-relaxed mb-5" style={{ color: "rgba(240,244,255,0.72)" }}>
+                My flagship paper, <em className="text-white">The Bluffing Machine</em>, runs the first formal experimental test of LLM strategic deception using a signaling game framework grounded in Perfect Bayesian Equilibrium theory — testing GPT-4.1, Gemini 2.5, and others across 900 simulated crisis interactions. It is currently under review at the <em>Journal of Global Security Studies</em>.
               </p>
-              <p className="text-base leading-relaxed" style={{ color: "rgba(240,244,255,0.65)" }}>
-                My current manuscript, <em className="text-white">The Bluffing Machine</em>, is under review at the <em>Journal of Global Security Studies</em>. It argues that generative AI fundamentally undermines classical deterrence theory by enabling credible strategic deception at scale.
+              <p className="text-base leading-relaxed" style={{ color: "rgba(240,244,255,0.62)" }}>
+                Alongside my research, I work as a Senior Data Scientist at a Fortune 5 company, where I build and deploy production ML and GenAI systems at a scale that few practitioners encounter. That dual vantage point — rigorous theory and industrial-scale practice — is the defining feature of my work.
               </p>
             </div>
           </FadeIn>
@@ -350,7 +402,7 @@ function About() {
                   <div key={e.degree} className="glow-card p-4">
                     <p className="text-white font-semibold text-sm mb-0.5" style={{ fontFamily: "'Fraunces', serif" }}>{e.degree}</p>
                     <p className="font-mono-label text-xs mb-1" style={{ color: "rgba(74,158,255,0.8)" }}>{e.institution} · {e.year}</p>
-                    {e.focus && <p className="text-xs" style={{ color: "rgba(240,244,255,0.5)" }}>{e.focus}</p>}
+                    {e.focus && <p className="text-xs" style={{ color: "rgba(240,244,255,0.45)" }}>{e.focus}</p>}
                   </div>
                 ))}
               </div>
@@ -378,13 +430,13 @@ function Research() {
 
         <div className="grid md:grid-cols-2 gap-6">
           {PROJECTS.map((p, i) => (
-            <FadeIn key={p.name} delay={i * 120}>
+            <FadeIn key={p.name} delay={i * 100}>
               <a
                 href={p.url}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="block glow-card p-6 h-full"
-                style={p.highlight ? { borderColor: "rgba(74,158,255,0.2)", background: "rgba(74,158,255,0.04)" } : {}}
+                style={p.highlight ? { borderColor: "rgba(74,158,255,0.22)", background: "rgba(74,158,255,0.04)" } : {}}
               >
                 <div className="flex items-start justify-between gap-3 mb-3">
                   <h3 className="text-white font-bold text-lg leading-tight" style={{ fontFamily: "'Fraunces', serif" }}>
@@ -393,13 +445,18 @@ function Research() {
                   {p.badge && (
                     <span
                       className="flex-shrink-0 font-mono-label text-xs px-2 py-1 rounded-full"
-                      style={{ background: "rgba(126,203,161,0.12)", color: "#7ECBA1", border: "1px solid rgba(126,203,161,0.25)", whiteSpace: "nowrap" }}
+                      style={{
+                        background: p.highlight ? "rgba(74,158,255,0.12)" : "rgba(126,203,161,0.1)",
+                        color: p.highlight ? "rgba(74,158,255,0.9)" : "#7ECBA1",
+                        border: `1px solid ${p.highlight ? "rgba(74,158,255,0.22)" : "rgba(126,203,161,0.22)"}`,
+                        whiteSpace: "nowrap",
+                      }}
                     >
                       {p.badge}
                     </span>
                   )}
                 </div>
-                <p className="text-sm leading-relaxed mb-4" style={{ color: "rgba(240,244,255,0.65)" }}>
+                <p className="text-sm leading-relaxed mb-4" style={{ color: "rgba(240,244,255,0.62)" }}>
                   {p.description}
                 </p>
                 <div className="flex flex-wrap gap-1.5">
@@ -432,22 +489,20 @@ function Experience() {
         </FadeIn>
 
         <div className="relative pl-6 md:pl-8">
-          {/* Vertical line */}
           <div
             className="absolute left-0 top-2 bottom-2 w-px"
-            style={{ background: "linear-gradient(to bottom, rgba(74,158,255,0.5), rgba(74,158,255,0.1))" }}
+            style={{ background: "linear-gradient(to bottom, rgba(74,158,255,0.5), rgba(74,158,255,0.08))" }}
           />
 
           <div className="flex flex-col gap-6">
             {EXPERIENCE.map((e, i) => (
               <FadeIn key={e.title + e.company} delay={i * 100}>
                 <div className="relative">
-                  {/* Dot */}
                   <div
                     className="absolute -left-[1.6rem] md:-left-[2.1rem] top-5 w-3 h-3 rounded-full border-2"
                     style={{
                       background: i === 0 ? "var(--cobalt)" : "#0B1120",
-                      borderColor: i === 0 ? "var(--cobalt)" : "rgba(74,158,255,0.4)",
+                      borderColor: i === 0 ? "var(--cobalt)" : "rgba(74,158,255,0.35)",
                       boxShadow: i === 0 ? "0 0 10px rgba(74,158,255,0.5)" : "none",
                     }}
                   />
@@ -464,14 +519,14 @@ function Experience() {
                         <p className="font-mono-label text-xs mb-1" style={{ color: "rgba(74,158,255,0.85)" }}>
                           {e.company}
                         </p>
-                        <p className="font-mono-label text-xs" style={{ color: "rgba(240,244,255,0.4)" }}>
+                        <p className="font-mono-label text-xs" style={{ color: "rgba(240,244,255,0.38)" }}>
                           {e.period} · {e.location}
                         </p>
                       </div>
                       <span
                         className="text-lg transition-transform duration-200 flex-shrink-0 mt-1"
                         style={{
-                          color: "rgba(74,158,255,0.6)",
+                          color: "rgba(74,158,255,0.55)",
                           transform: open === i ? "rotate(180deg)" : "rotate(0deg)",
                         }}
                       >
@@ -480,10 +535,10 @@ function Experience() {
                     </div>
 
                     {open === i && (
-                      <ul className="mt-4 flex flex-col gap-2.5 border-t pt-4" style={{ borderColor: "rgba(255,255,255,0.06)" }}>
+                      <ul className="mt-4 flex flex-col gap-2.5 border-t pt-4" style={{ borderColor: "rgba(255,255,255,0.05)" }}>
                         {e.bullets.map((b) => (
-                          <li key={b} className="flex items-start gap-3 text-sm leading-relaxed" style={{ color: "rgba(240,244,255,0.7)" }}>
-                            <span className="mt-1.5 flex-shrink-0 w-1.5 h-1.5 rounded-full" style={{ background: "var(--cobalt)", opacity: 0.7 }} />
+                          <li key={b} className="flex items-start gap-3 text-sm leading-relaxed" style={{ color: "rgba(240,244,255,0.68)" }}>
+                            <span className="mt-1.5 flex-shrink-0 w-1.5 h-1.5 rounded-full" style={{ background: "var(--cobalt)", opacity: 0.65 }} />
                             {b}
                           </li>
                         ))}
@@ -514,9 +569,9 @@ function Skills() {
           </div>
         </FadeIn>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {SKILLS.map((s, i) => (
-            <FadeIn key={s.category} delay={i * 80}>
+            <FadeIn key={s.category} delay={i * 70}>
               <div className="glow-card p-5 h-full">
                 <h3 className="font-mono-label text-xs tracking-widest uppercase mb-4" style={{ color: "rgba(74,158,255,0.8)" }}>
                   {s.category}
@@ -526,7 +581,7 @@ function Skills() {
                     <span
                       key={item}
                       className="text-xs px-2.5 py-1 rounded-md"
-                      style={{ background: "rgba(255,255,255,0.05)", color: "rgba(240,244,255,0.75)", border: "1px solid rgba(255,255,255,0.07)" }}
+                      style={{ background: "rgba(255,255,255,0.05)", color: "rgba(240,244,255,0.72)", border: "1px solid rgba(255,255,255,0.07)" }}
                     >
                       {item}
                     </span>
@@ -563,14 +618,14 @@ function Contact() {
             <h2 className="text-3xl md:text-4xl font-bold text-white" style={{ fontFamily: "'Fraunces', serif" }}>
               Get in Touch
             </h2>
-            <p className="mt-3 text-base" style={{ color: "rgba(240,244,255,0.6)" }}>
-              I'm open to research collaborations, speaking invitations, and academic discussions.
+            <p className="mt-3 text-base" style={{ color: "rgba(240,244,255,0.55)" }}>
+              Open to research collaborations, speaking invitations, consulting, and academic discussions.
             </p>
           </div>
         </FadeIn>
 
         <FadeIn delay={100}>
-          <div className="flex flex-wrap gap-4 mb-10">
+          <div className="flex flex-wrap gap-3 mb-10">
             <a
               href="mailto:tapangiv@buffalo.edu"
               className="flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm font-medium transition-all hover:opacity-90"
@@ -580,7 +635,7 @@ function Contact() {
               tapangiv@buffalo.edu
             </a>
             <a
-              href="https://ssrn.com/author=tapangivotanku"
+              href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6361838"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm font-medium transition-all hover:opacity-90"
@@ -594,7 +649,7 @@ function Contact() {
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm font-medium transition-all hover:opacity-90"
-              style={{ background: "rgba(255,255,255,0.05)", color: "rgba(240,244,255,0.7)", border: "1px solid rgba(255,255,255,0.08)" }}
+              style={{ background: "rgba(255,255,255,0.05)", color: "rgba(240,244,255,0.65)", border: "1px solid rgba(255,255,255,0.08)" }}
             >
               <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
               GitHub
@@ -606,66 +661,54 @@ function Contact() {
           {sent ? (
             <div
               className="glow-card p-8 text-center"
-              style={{ borderColor: "rgba(126,203,161,0.25)", background: "rgba(126,203,161,0.05)" }}
+              style={{ borderColor: "rgba(126,203,161,0.22)", background: "rgba(126,203,161,0.04)" }}
             >
               <p className="text-lg font-semibold text-white mb-2" style={{ fontFamily: "'Fraunces', serif" }}>Message sent!</p>
-              <p className="text-sm" style={{ color: "rgba(240,244,255,0.6)" }}>Your email client should have opened. I'll get back to you soon.</p>
+              <p className="text-sm" style={{ color: "rgba(240,244,255,0.55)" }}>Your email client should have opened. I'll get back to you soon.</p>
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="flex flex-col gap-4">
               <div className="grid sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block font-mono-label text-xs tracking-widest uppercase mb-2" style={{ color: "rgba(240,244,255,0.5)" }}>Name</label>
+                  <label className="block font-mono-label text-xs tracking-widest uppercase mb-2" style={{ color: "rgba(240,244,255,0.45)" }}>Name</label>
                   <input
                     type="text"
                     required
                     value={form.name}
                     onChange={(e) => setForm({ ...form, name: e.target.value })}
                     className="w-full px-4 py-3 rounded-lg text-sm outline-none transition-all"
-                    style={{
-                      background: "rgba(255,255,255,0.04)",
-                      border: "1px solid rgba(255,255,255,0.08)",
-                      color: "rgba(240,244,255,0.9)",
-                    }}
+                    style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)", color: "rgba(240,244,255,0.9)" }}
                     placeholder="Your name"
                   />
                 </div>
                 <div>
-                  <label className="block font-mono-label text-xs tracking-widest uppercase mb-2" style={{ color: "rgba(240,244,255,0.5)" }}>Email</label>
+                  <label className="block font-mono-label text-xs tracking-widest uppercase mb-2" style={{ color: "rgba(240,244,255,0.45)" }}>Email</label>
                   <input
                     type="email"
                     required
                     value={form.email}
                     onChange={(e) => setForm({ ...form, email: e.target.value })}
                     className="w-full px-4 py-3 rounded-lg text-sm outline-none transition-all"
-                    style={{
-                      background: "rgba(255,255,255,0.04)",
-                      border: "1px solid rgba(255,255,255,0.08)",
-                      color: "rgba(240,244,255,0.9)",
-                    }}
+                    style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)", color: "rgba(240,244,255,0.9)" }}
                     placeholder="your@email.com"
                   />
                 </div>
               </div>
               <div>
-                <label className="block font-mono-label text-xs tracking-widest uppercase mb-2" style={{ color: "rgba(240,244,255,0.5)" }}>Message</label>
+                <label className="block font-mono-label text-xs tracking-widest uppercase mb-2" style={{ color: "rgba(240,244,255,0.45)" }}>Message</label>
                 <textarea
                   required
                   rows={5}
                   value={form.message}
                   onChange={(e) => setForm({ ...form, message: e.target.value })}
                   className="w-full px-4 py-3 rounded-lg text-sm outline-none transition-all resize-none"
-                  style={{
-                    background: "rgba(255,255,255,0.04)",
-                    border: "1px solid rgba(255,255,255,0.08)",
-                    color: "rgba(240,244,255,0.9)",
-                  }}
+                  style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)", color: "rgba(240,244,255,0.9)" }}
                   placeholder="Your message..."
                 />
               </div>
               <button
                 type="submit"
-                className="self-start px-7 py-3 rounded-lg font-semibold text-sm text-white transition-all hover:opacity-90 hover:translate-y-[-1px]"
+                className="self-start px-7 py-3 rounded-lg font-semibold text-sm text-white transition-all hover:opacity-90 hover:-translate-y-px"
                 style={{ background: "var(--cobalt)" }}
               >
                 Send Message
@@ -683,14 +726,14 @@ function Footer() {
   return (
     <footer className="py-8" style={{ background: "#080E1C", borderTop: "1px solid rgba(255,255,255,0.05)" }}>
       <div className="container flex flex-col sm:flex-row items-center justify-between gap-4">
-        <p className="font-mono-label text-xs" style={{ color: "rgba(240,244,255,0.3)" }}>
-          © {new Date().getFullYear()} Tapang Ivo Tanku · University at Buffalo, SUNY
+        <p className="font-mono-label text-xs" style={{ color: "rgba(240,244,255,0.28)" }}>
+          © {new Date().getFullYear()} Tapang Ivo Tanku, PhD · University at Buffalo, SUNY
         </p>
         <div className="flex items-center gap-5">
-          <a href="mailto:tapangiv@buffalo.edu" className="font-mono-label text-xs transition-colors hover:opacity-80" style={{ color: "rgba(240,244,255,0.35)" }}>
+          <a href="mailto:tapangiv@buffalo.edu" className="font-mono-label text-xs transition-colors hover:opacity-80" style={{ color: "rgba(240,244,255,0.3)" }}>
             tapangiv@buffalo.edu
           </a>
-          <a href="https://tapangivotanku.com" className="font-mono-label text-xs transition-colors hover:opacity-80" style={{ color: "rgba(74,158,255,0.5)" }}>
+          <a href="https://tapangivotanku.com" className="font-mono-label text-xs transition-colors hover:opacity-80" style={{ color: "rgba(74,158,255,0.45)" }}>
             tapangivotanku.com
           </a>
         </div>
