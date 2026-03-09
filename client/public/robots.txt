@@ -1,0 +1,11 @@
+# robots.txt — tapangivotanku.com
+# Allow all search engines to crawl and index the full site
+
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://tapangivotanku.com/sitemap.xml
+
+# Block access to internal build artifacts
+Disallow: /assets/*.map
